@@ -4,8 +4,14 @@ import { supabase } from './createClient'
 const App =() =>{
 
   const [users,setUsers]=useState([])
-  console.log(users)
+  
 
+
+  const [user,setUser]=useState({
+    name:'',age:''
+  })
+
+  console.log(user)
   useEffect(()=>{
       fetchUsers()
   },[])
@@ -16,11 +22,47 @@ const App =() =>{
     .from('users')
     .select('*')
     setUsers(data)
-    console.log(data)
    }
 
+  function handleChange(evevnt){
+    
+    setUser(prevFormData=>{
+      return{
+        ...prevFormData,
+        [event.target.name]:evevnt.target.value
+      }
+    })
+  }
+
+  async function createUser(){
+     const { error } = await supabase
+     .from('users')
+     .insert({ name: user.name, age: user.age })
+   }
+  
    return (
     <div> 
+    <form onSubmit={createUser}>
+       <input 
+       type="text" 
+       placeholder="Name"
+       name='name'
+       onChange={handleChange}
+       
+       />
+
+      <input 
+       type="number" 
+       placeholder="Age"
+       name='age'
+       onChange={handleChange}
+       
+       />
+       <button type='sumbit'>Create</button>
+    </form>
+
+
+
       <table>
         <thead>
           <tr>
