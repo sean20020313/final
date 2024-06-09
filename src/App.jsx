@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from './createClient';
-import './App.css'; // 引入樣式表
+import './App.css'; 
 
 const App = () => {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState({ name: '', age: '' });
   const [user2, setUser2] = useState({ name: '', age: '' });
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     fetchUsers();
@@ -98,9 +99,22 @@ const App = () => {
     }
   }
 
+  // 搜尋條件
+  const filteredUsers = users.filter(user => {
+    return user.name.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+
   return (
     <div className="container">
       <h1>Final Project</h1>
+      {/* 搜尋 */}
+      <input
+        type="text"
+        placeholder="Search by name"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+
       <form onSubmit={createUser} className="form">
         <input
           type="text"
@@ -147,7 +161,7 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user, index) => (
+          {filteredUsers.map((user, index) => (
             <tr key={index}>
               <td>{user.id}</td>
               <td>{user.name}</td>
