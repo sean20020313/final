@@ -1,3 +1,37 @@
+.container {
+  text-align: center;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fff; /* 白色 */
+  width: 80%; /* 設置容器寬度 */
+  max-width: 980px; /* 最大寬度 */
+  position: absolute; /* 絕對定位 */
+  top: 50%; /* 上方位置為視窗高度的50% */
+  left: 50%; /* 左方位置為視窗寬度的50% */
+  transform: translate(-50%, -50%); /* 垂直水平居中 */
+}
+
+h1 {
+  color: #343a40; /* 黑色 */
+}
+
+.form {
+  margin-bottom: 1rem;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #adb5bd; /* 淺灰色 */
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: #495057; /* 深灰色 */
+}
+
 table {
   border-collapse: collapse;
   max-width: 980px;
@@ -5,54 +39,43 @@ table {
   margin: 2rem auto;
 }
 
-table th,
-table td {
-  border: 1px solid #add;
+th,
+td {
+  border: 1px solid #adb5bd; /* 淺灰色 */
   padding: 8px;
 }
 
-  #root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-  }
+th {
+  background-color: #343a40; /* 黑色 */
+  color: #fff;
+}
 
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  
-  .logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
-  }
-  
-  @keyframes logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-      animation: logo-spin infinite 20s linear;
-    }
-  }
+.btn {
+  background-color: #adb5bd; /* 淺灰色 */
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+}
 
-  .card {
-    padding: 2em;
-  }
+.btn:hover {
+  background-color: #868e96; /* 深灰色 */
+}
 
-  .read-the-docs {
-    color: #888;
-  }
-;
+.btn-delete {
+  background-color: #adb5bd; /* 淺灰色 */
+  color: #fff;
+}
+
+.btn-delete:hover {
+  background-color: #868e96; /* 深灰色 */
+}
+
+.btn-edit {
+  background-color: #adb5bd; /* 淺灰色 */
+  color: #fff;
+}
+
+.btn-edit:hover {
+  background-color: #868e96; /* 深灰色 */
+}

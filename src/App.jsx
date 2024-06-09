@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from './createClient';
+import './App.css'; // 引入樣式表
 
 const App = () => {
   const [users, setUsers] = useState([]);
@@ -98,10 +99,9 @@ const App = () => {
   }
 
   return (
-    <div>
-      <h1>final project</h1>
-      {/* Form 1 */}
-      <form onSubmit={createUser}>
+    <div className="container">
+      <h1>Final Project</h1>
+      <form onSubmit={createUser} className="form">
         <input
           type="text"
           placeholder="Name"
@@ -116,11 +116,10 @@ const App = () => {
           value={user.age}
           onChange={handleChange}
         />
-        <button type="submit">Create</button>
+        <button type="submit" className="btn">Create</button>
       </form>
 
-      {/* Form 2 */}
-      <form onSubmit={updateUser}>
+      <form onSubmit={updateUser} className="form">
         <input
           type="text"
           placeholder="Name"
@@ -135,16 +134,16 @@ const App = () => {
           value={user2.age}
           onChange={handleChange2}
         />
-        <button type="submit">Save Changes</button>
+        <button type="submit" className="btn">Save Changes</button>
       </form>
 
-      <table>
+      <table className="table">
         <thead>
           <tr>
-            <td>ID</td>
-            <td>NAME</td>
-            <td>AGE</td>
-            <td>Actions</td>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>AGE</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -154,8 +153,8 @@ const App = () => {
               <td>{user.name}</td>
               <td>{user.age}</td>
               <td>
-                <button onClick={() => deleteUser(user.id)}>Delete</button>
-                <button onClick={() => displayUser(user.id)}>Edit</button>
+                <button onClick={() => deleteUser(user.id)} className="btn btn-delete">Delete</button>
+                <button onClick={() => displayUser(user.id)} className="btn btn-edit">Edit</button>
               </td>
             </tr>
           ))}
