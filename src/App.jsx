@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from './createClient';
 
 const App = () => {
-
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState({ name: '', age: '' });
+  const [user2, setUser2] = useState({ name: '', age: '' });
 
   useEffect(() => {
     fetchUsers();
@@ -29,6 +29,14 @@ const App = () => {
     }));
   }
 
+  function handleChange2(event) {
+    const { name, value } = event.target;
+    setUser2(prevFormData => ({
+      ...prevFormData,
+      [name]: value
+    }));
+  }
+
   async function createUser(event) {
     event.preventDefault();
     const { error } = await supabase
@@ -41,6 +49,38 @@ const App = () => {
     }
     setUser({ name: '', age: '' });
   }
+
+  async function updateUser(event) {
+    event.preventDefault();
+    
+    if (!user.id) {
+      console.error('User ID is undefined');
+      return;
+    }
+    const { error } = await supabase
+      .from('users')
+      .update({ name: user2.name, age: user2.age })
+      .eq('id', user.id);
+    if (error) {
+      console.error('Error updating user:', error.message);
+    } else {
+      fetchUsers();
+    }
+    setUser2({ name: '', age: '' });
+  }
+  
+
+  function displayUser(userId) {
+    const foundUser = users.find(user => user.id === userId);
+    if (foundUser) {
+      setUser2({ id: foundUser.id, name: foundUser.name, age: foundUser.age });
+      setUser({ id: foundUser.id, name: foundUser.name, age: foundUser.age });
+    } else {
+      console.error('User not found');
+    }
+  }
+  
+  
 
   async function deleteUser(userId) {
     const { data, error } = await supabase
@@ -58,24 +98,44 @@ const App = () => {
   }
 
   return (
-    <div> 
+    <div>
       <h1>final project</h1>
+      {/* Form 1 */}
       <form onSubmit={createUser}>
-        <input 
-          type="text" 
+        <input
+          type="text"
           placeholder="Name"
-          name='name'
+          name="name"
           value={user.name}
           onChange={handleChange}
         />
-        <input 
-          type="number" 
+        <input
+          type="number"
           placeholder="Age"
-          name='age'
+          name="age"
           value={user.age}
           onChange={handleChange}
         />
-        <button type='submit'>Create</button>
+        <button type="submit">Create</button>
+      </form>
+
+      {/* Form 2 */}
+      <form onSubmit={updateUser}>
+        <input
+          type="text"
+          placeholder="Name"
+          name="name"
+          value={user2.name}
+          onChange={handleChange2}
+        />
+        <input
+          type="number"
+          placeholder="Age"
+          name="age"
+          value={user2.age}
+          onChange={handleChange2}
+        />
+        <button type="submit">Save Changes</button>
       </form>
 
       <table>
@@ -88,18 +148,21 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user, index) =>
-            <tr key={index}> 
+          {users.map((user, index) => (
+            <tr key={index}>
               <td>{user.id}</td>
               <td>{user.name}</td>
               <td>{user.age}</td>
-              <td><button onClick={() => deleteUser(user.id)}>Delete</button></td>
+              <td>
+                <button onClick={() => deleteUser(user.id)}>Delete</button>
+                <button onClick={() => displayUser(user.id)}>Edit</button>
+              </td>
             </tr>
-          )}
-        </tbody> 
+          ))}
+        </tbody>
       </table>
     </div>
   );
-}
+};
 
 export default App;
