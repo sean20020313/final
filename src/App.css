@@ -2,17 +2,18 @@
   text-align: center;
   margin: 0 auto;
   padding: 2rem;
-  background-color: #fff; /* 白色 */
-  width: 80%; /* 設置容器寬度 */
-  max-width: 980px; /* 最大寬度 */
-  position: absolute; /* 絕對定位 */
-  top: 50%; /* 上方位置為視窗高度的50% */
-  left: 50%; /* 左方位置為視窗寬度的50% */
-  transform: translate(-50%, -50%); /* 垂直水平居中 */
+  background-color: #fff;
+  width: 80%;
+  max-width: 980px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 h1 {
-  color: #343a40; /* 黑色 */
+  color: #343a40;
+  font-size: 2rem; /* 增大字体 */
 }
 
 .form {
@@ -20,16 +21,19 @@ h1 {
 }
 
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+input[type="password"] {
   padding: 0.5rem;
   margin-bottom: 0.5rem;
-  border: 1px solid #adb5bd; /* 淺灰色 */
+  border: 1px solid #adb5bd;
+  font-size: 1.2rem; /* 增大输入框字体 */
 }
 
 input[type="text"]:focus,
-input[type="number"]:focus {
+input[type="number"]:focus,
+input[type="password"]:focus {
   outline: none;
-  border-color: #495057; /* 深灰色 */
+  border-color: #495057;
 }
 
 table {
@@ -41,41 +45,42 @@ table {
 
 th,
 td {
-  border: 1px solid #adb5bd; /* 淺灰色 */
+  border: 1px solid #adb5bd;
   padding: 8px;
 }
 
 th {
-  background-color: #343a40; /* 黑色 */
+  background-color: #343a40;
   color: #fff;
 }
 
 .btn {
-  background-color: #adb5bd; /* 淺灰色 */
+  background-color: #adb5bd;
   color: #fff;
   padding: 0.5rem 1rem;
   border: none;
   cursor: pointer;
+  font-size: 1.2rem; /* 增大按钮字体 */
 }
 
 .btn:hover {
-  background-color: #868e96; /* 深灰色 */
+  background-color: #868e96;
 }
 
 .btn-delete {
-  background-color: #adb5bd; /* 淺灰色 */
+  background-color: #adb5bd;
   color: #fff;
 }
 
 .btn-delete:hover {
-  background-color: #868e96; /* 深灰色 */
+  background-color: #868e96;
 }
 
 .btn-edit {
-  background-color: #adb5bd; /* 淺灰色 */
+  background-color: #adb5bd;
   color: #fff;
 }
 
 .btn-edit:hover {
-  background-color: #868e96; /* 深灰色 */
+  background-color: #868e96;
 }

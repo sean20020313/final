@@ -1,10 +1,10 @@
+// src/Login.jsx
 import React, { useState } from "react";
 import { supabase } from "../createClient";
-import { Link , useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  let navigate=useNavigate()
-
+  let navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -27,34 +27,32 @@ const Login = () => {
       if (error) {
         throw error;
       }
-      console.log(data)
-      navigate('./homepage')
-      //alert('Check your email for verification link');
+      navigate('/homepage');
     } catch (error) {
       alert(error.message);
     }
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-
+    <div className="container">
+      <form onSubmit={handleSubmit} className="form">
+        <h1>Login</h1>
         <input  
           placeholder="Email"
           name='email'
           onChange={handleChange}
+          value={formData.email}
         />
         <input  
           placeholder="Password"
           name='password'
           type='password'
           onChange={handleChange}
+          value={formData.password}
         />
-        <button type="submit">
-          Submit
-        </button>
+        <button type="submit" className="btn">Submit</button>
       </form>
-      Already have an account? <Link to='/signup'>Sign Up</Link>
+      Don't have an account? <Link to='/signup'>Sign Up</Link>
     </div>
   );
 }
