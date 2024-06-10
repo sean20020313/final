@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 
 export const supabase = createClient(
-     "https://pggyhoianzhingmncyuk.supabase.co",
-     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBnZ3lob2lhbnpoaW5nbW5jeXVrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTc0OTA4ODIsImV4cCI6MjAzMzA2Njg4Mn0.ISw-ZbgkLiMwWp-31XItj9BPChH_OjEwo5Mh0QP2Blk"
+     "https://tleklgsvkuwhcfmmidzo.supabase.co",
+     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRsZWtsZ3N2a3V3aGNmbW1pZHpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODYyMjM5NDksImV4cCI6MjAwMTc5OTk0OX0.uq_htOwBsGoBhvKgvv3QreK3FM8df59sZrNA3jnI8-k"
 )
