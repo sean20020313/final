@@ -1,14 +1,15 @@
 
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../createClient';
+import { useNavigate } from 'react-router-dom';
 
-const Homepage = () =>{
+const Homepage = ({token}) =>{
     const [users, setUsers] = useState([]);
     const [user, setUser] = useState({ name: '', age: '' });
     const [user2, setUser2] = useState({ name: '', age: '' });
     const [searchTerm, setSearchTerm] = useState('');
   
-    useEffect(() => {
+    useEffect(() => { 
       fetchUsers();
     }, []);
   
@@ -23,6 +24,8 @@ const Homepage = () =>{
       }
     }
   
+
+
     function handleChange(event) {
       const { name, value } = event.target;
       setUser(prevFormData => ({
@@ -104,6 +107,11 @@ const Homepage = () =>{
       return user.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
   
+    let navigate = useNavigate()
+    function handleLogout(){
+        sessionStorage.removeItem('token')
+        navigate('/')
+    }
     return (
       <div className="container">
         <h1>Final Project</h1>
@@ -174,6 +182,7 @@ const Homepage = () =>{
             ))}
           </tbody>
         </table>
+        <button onClick={handleLogout}>Logout</button>
       </div>
     );
 }
